@@ -1,8 +1,10 @@
 <script>
-	import mainPage from "./components/mainPage.svelte"
+	import MainPage from "./components/mainPage.svelte";
+	import Navbar from "./components/navbar.svelte";
 </script>
 
-<mainPage />
+<Navbar/>
+<MainPage/>
 
 <style>
 </style>
