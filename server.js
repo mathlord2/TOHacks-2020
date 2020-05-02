@@ -8,8 +8,8 @@ var server = net.createServer(function(conn) {
 });
 
 var HOST = '127.0.0.1';
-var PORT = '9001'
-var FILEPATH = '/home/steve/Downloads/';
+var PORT = '8000'
+var FILEPATH = '/home/';
 
 server.listen(PORT, HOST, function() {
     //listening
