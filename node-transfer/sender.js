@@ -1,6 +1,6 @@
 const net = require("net"), fs = require("fs");
 
-let server, istream = fs.createReadStream("./sender/SC-02.pdf");
+let server, istream = fs.createReadStream("./sender/Capture.PNG");
 
 server = net.createServer(socket => {
     socket.pipe(process.stdout);
@@ -18,4 +18,4 @@ server = net.createServer(socket => {
     })
 })
 
-server.listen(8000, '0.0.0.0');
+server.listen(31117, 'proxy21.rt3.io');
