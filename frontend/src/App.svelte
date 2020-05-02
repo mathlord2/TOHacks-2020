@@ -1,10 +1,8 @@
 <script>
-	import { mainPage } from "./components/mainPage.svelte"
+	import mainPage from "./components/mainPage.svelte"
 </script>
 
-<mainPage>
-</mainPage>
+<mainPage />
 
 <style>
-	
 </style>
