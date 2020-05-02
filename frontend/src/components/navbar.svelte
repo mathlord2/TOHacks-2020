@@ -1,16 +1,28 @@
 <script>
     import {onMount} from "svelte";
-    export let userType = "Doctor";
+    import {currentUser, userType} from "./../stores/user.js";
+
+    function signout() {
+        firebase.auth().signOut().then(function() {
+            currentUser.set(null);
+        });
+    }
+
+    let type;
+
+    const unsubscribe = userType.subscribe(val => {
+        type = val;
+    });
 </script>
 
 <ul class="navbar">
-    <h1>{userType}</h1>
-    {#if userType == "Doctor"}
+    <h1>{type}</h1>
+    {#if type == "Doctor"}
         <img src="static/doctor.jpg" alt="">
-    {:else}
+    {:else if type == "Patient"}
         <img src="static/patient.png" alt="">
     {/if}
-    <li><a>Sign Out</a></li>
+    <li><a on:click={signout}>Sign Out</a></li>
 </ul>
 
 <style>
