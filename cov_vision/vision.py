@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 from glob import glob
 from tensorflow.keras import Sequential
-from tensorflow.keras.layers import Conv2D, Dense, Flatten, MaxPooling2D
+from tensorflow.keras.layers import Conv2D, Dense, Flatten, MaxPooling2D, Dropout
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import load_model
 from PIL import Image
@@ -23,9 +23,9 @@ def preprocess_image(pil_image):
     return np.array(pil_image.convert("L"))/255.0
 
 def load_data():    
-    filenames_infected = glob("Infected-jpg/*.jpg")
-    filenames_healthy = glob("Healthy-jpg/*.jpg")
-    
+    filenames_infected = glob("cov_vision/Infected-jpg/*.jpg")
+    filenames_healthy = glob("cov_vision/Healthy-jpg/*.jpg")
+
     # INPUT
     # array of images (each in the form of a numpy array)
     train_infected_x = np.array([preprocess_image(Image.open(filename)) for filename in filenames_infected])
@@ -42,7 +42,7 @@ def load_data():
 
     return train_x, train_y
 
-def new_model(x, y, epochs=10, learning_rate=0.1):
+def new_model(x, y, epochs=10, learning_rate=0.0001):
     train_x = x.reshape(x.shape[0], IMAGE_DIM[0], IMAGE_DIM[1], 1)
     train_y = y
 
@@ -60,6 +60,7 @@ def new_model(x, y, epochs=10, learning_rate=0.1):
     # for now, figure out how to properly structure the model
 
     model = Sequential()
+    '''
     model.add(Conv2D(32, (3, 3), activation="relu", input_shape=(IMAGE_DIM[0], IMAGE_DIM[1], 1), padding='same'))
     model.add(Conv2D(32, (3, 3), activation="relu"))
     model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -72,6 +73,13 @@ def new_model(x, y, epochs=10, learning_rate=0.1):
 
     model.add(Dense(32, activation="relu"))
     model.add(Dense(1, activation="softmax"))
+    '''
+    model.add(Conv2D(32, (3, 3), activation="relu", input_shape=(IMAGE_DIM[0], IMAGE_DIM[1], 1), padding='same'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.2))
+    model.add(Flatten())
+    model.add(Dense(32, activation="relu"))
+    model.add(Dense(1, activation="sigmoid"))
 
     model.compile(optimizer=Adam(learning_rate), loss="binary_crossentropy", metrics=["accuracy"])
     model.fit(train_x, train_y, epochs=epochs, shuffle=True)
@@ -85,6 +93,8 @@ IMAGE_DIM = (200,125)
 train_x, train_y = load_data()
 train_x = train_x.reshape(train_x.shape[0], IMAGE_DIM[0], IMAGE_DIM[1], 1)
 
-model = load_model("lung_model.h5")
+model = new_model(train_x, train_y, epochs=1)
 
-print(model.predict(train_x))
+# model = load_model("lung_model.h5")
+
+# print(model.predict(train_x))
