@@ -49,7 +49,7 @@
             <li>Self-quarantine yourself at home for at least 2 weeks.</li>
             <li>Cover any coughs or sneezes with your arm.</li>
             <li>If symptoms get extremely serious (e.g. coughing), call an ambulance.</li>
-        {:else}
+        {:else if cond == "Normal"}
             <li>Stay home as much as possible to prevent getting sick.</li>
             <li>Maintain a safe distance (at least 2 m) from others.</li>
             <li>Wash hands often.</li>
