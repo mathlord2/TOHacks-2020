@@ -58,9 +58,17 @@ LEARNING_RATE = 0.1
 # use pre-trained
 # dropout should be used when loss is high
 # do it in the cloud - faster (e.g. colab)
+#
+# 1. try more layers
+# 2. try other, larger dataset
+
+# for now, figure out how to properly structure the model
+
 model = Sequential()
 model.add(Conv2D(64, kernel_size=4, activation="relu", input_shape=(IMAGE_DIM[0],IMAGE_DIM[1], 1)))
 model.add(MaxPooling2D(4,4))
+model.add(Conv2D(32, kernel_size=3, activation="relu"))
+model.add(MaxPooling2D(3,3))
 model.add(Conv2D(32, kernel_size=3, activation="relu"))
 model.add(MaxPooling2D(3,3))
 model.add(Flatten())
