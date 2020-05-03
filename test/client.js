@@ -3,7 +3,7 @@ var fs = require('fs');
 
 
 var PORT = 8000;
-var HOST = '34.66.134.44';
+var HOST = '99.250.172.219';
 var FILEPATH = '/home/';
 
 var client = new net.Socket()
