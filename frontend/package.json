@@ -4,7 +4,9 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --port 8000"
+    "start": "sirv public --port 8000",
+    "express": "4.13.3",
+    "multer": "1.1.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "11.0.2",
@@ -13,10 +15,15 @@
     "rollup-plugin-livereload": "^1.0.0",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
-    "svelte": "^3.0.0"
+    "svelte": "^3.0.0",
+    "should": "~7.1.0",
+    "mocha": "~2.3.3",
+    "supertest": "~1.1.0"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "firebase": "^7.14.2",
+    "multer": "^1.4.2",
     "rxfire": "^3.12.2",
     "rxjs": "^6.5.5",
     "sirv-cli": "^0.4.4"

@@ -1,6 +1,6 @@
 <script>
     import {onMount} from 'svelte';
-    import {currentUser, isNew} from './../stores/user.js';
+    import {currentUser, userId, userType, isNew, condition} from './../stores/user.js';
 
     onMount(() => {
         var uiConfig = {
@@ -17,7 +17,9 @@
                     var user = authResult.user;
                     var isNewUser = authResult.additionalUserInfo.isNewUser;
                     currentUser.set(user);
+                    userId.set(user.email);
                     isNew.set(isNewUser);
+                    getUserData();
                     return true;
                 },
                 signInFailure: function(error) {
@@ -36,11 +38,37 @@
         // The start method will wait until the DOM is loaded.
         ui.start('#firebaseui-auth-container', uiConfig);
     });
+
+    let id;
+
+    const unsubscribe = userId.subscribe(val => {
+        id = val;
+    })
+
+    function getUserData() {
+        db.collection("users").get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                if (id == doc.data().idUser) {
+                    userType.set(doc.data().type);
+                    if (doc.data().type == "Patient") {
+                        condition.set(doc.data().condition);
+                    }
+                }
+            });
+        });
+    }
 </script>
 
+<h1 align="center">Welcome to Cov-Vision</h1>
 <div id="firebaseui-auth-container"></div>
 
 <style>
+    h1 {
+        margin-top: 40px;
+        font-size: 40px;
+    }
+
     #firebaseui-auth-container {
         margin-top: 10%;
     }
