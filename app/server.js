@@ -14,6 +14,7 @@ var upload = multer({ storage : storage}).single('userPhoto');
 app.get('/',function(req,res){
       res.sendFile(__dirname + "/index.html");
 });
+//test
 
 app.post('/api/photo',function(req,res){
     upload(req,res,function(err) {
