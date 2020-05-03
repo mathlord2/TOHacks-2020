@@ -1,6 +1,6 @@
-# CoronaDetect
+# COV-Vision
 
-Using machine learning to detect the coronavirus in a patient.
+A web app that uses machine learning to allow doctors to pre-diagnose the coronavirus from a patient's x-ray image and send this data to them.
 
 ---
 
