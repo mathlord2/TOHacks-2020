@@ -1,14 +1,38 @@
 <script>
-    import {currentUser, isNew, userType} from "./../stores/user.js";
+    import {currentUser, userId, isNew, userType, condition} from "./../stores/user.js";
+
+    let id;
+
+    const unsubscribe = userId.subscribe(val => {
+        id = val;
+    });
     
     function setDoctor() {
+        const userData = {
+            idUser: id,
+            type: "Doctor"
+        }
+        db.collection("users").add(userData).catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
+
         userType.set("Doctor");
         isNew.set(null);
     }
 
     function setPatient() {
+        const userData = {
+            idUser: id,
+            type: "Patient",
+            condition: ""
+        }
+        db.collection("users").add(userData).catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
+
         userType.set("Patient");
         isNew.set(null);
+        condition.set("");
     }
 </script>
 
