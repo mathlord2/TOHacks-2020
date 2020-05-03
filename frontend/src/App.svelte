@@ -4,10 +4,16 @@
 	import Navbar from "./components/navbar.svelte";
 	import Auth from "./components/auth.svelte";
 	import NewUser from "./components/newUser.svelte";
-	import {currentUser, isNew} from "./stores/user.js";
+	import {loggedIn, currentUser, isNew} from "./stores/user.js";
+
+	let logged;
+
+	const unsubscribe = loggedIn.subscribe(val => {
+		logged = val;
+	});
 </script>
 
-{#if $currentUser}
+{#if logged}
 	{#if $isNew}
 		<NewUser/>
 	{:else}

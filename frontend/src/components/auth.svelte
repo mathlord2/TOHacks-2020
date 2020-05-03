@@ -1,6 +1,6 @@
 <script>
     import {onMount} from 'svelte';
-    import {currentUser, userId, userType, isNew, condition} from './../stores/user.js';
+    import {loggedIn, currentUser, userId, userType, isNew, condition} from './../stores/user.js';
 
     onMount(() => {
         var uiConfig = {
@@ -16,6 +16,7 @@
                 signInSuccessWithAuthResult: function(authResult, redirectUrl) {
                     var user = authResult.user;
                     var isNewUser = authResult.additionalUserInfo.isNewUser;
+                    loggedIn.set(true);
                     currentUser.set(user);
                     userId.set(user.email);
                     isNew.set(isNewUser);
@@ -28,6 +29,7 @@
                     // will reset, clearing any UI. This commonly occurs for error code
                     // 'firebaseui/anonymous-upgrade-merge-conflict' when merge conflict
                     // occurs. Check below for more details on this.
+                    console.log("Error");
                     return handleUIError(error);
                 },
             }
@@ -60,13 +62,14 @@
     }
 </script>
 
-<h1 align="center">Welcome to Cov-Vision</h1>
+<h1 align="center">Welcome to COV-Vision</h1>
 <div id="firebaseui-auth-container"></div>
 
 <style>
     h1 {
         margin-top: 40px;
         font-size: 40px;
+        color: white;
     }
 
     #firebaseui-auth-container {

@@ -1,10 +1,12 @@
 <script>
     import {onMount} from "svelte";
-    import {currentUser, userType} from "./../stores/user.js";
+    import {loggedIn, currentUser, userType} from "./../stores/user.js";
 
     function signout() {
         firebase.auth().signOut().then(function() {
+            loggedIn.set(false);
             currentUser.set(null);
+            console.log("Signed out");
         });
     }
 
