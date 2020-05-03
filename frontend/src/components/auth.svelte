@@ -62,14 +62,13 @@
     }
 </script>
 
-<h1 align="center">Welcome to COV-Vision</h1>
+<center><img src="static/cov-vision.png" alt=""></center>
 <div id="firebaseui-auth-container"></div>
 
 <style>
-    h1 {
+    img {
+        vertical-align: middle;
         margin-top: 40px;
-        font-size: 40px;
-        color: white;
     }
 
     #firebaseui-auth-container {
