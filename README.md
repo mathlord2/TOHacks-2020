@@ -2,31 +2,13 @@
 
 A web app that uses machine learning to allow doctors to pre-diagnose the coronavirus from a patient's x-ray image and send this data to them.
 
----
-
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
+To run this project, clone the repo on GitHub and navigate to the frontend directory of the project.
+Next, install the dependencies:
 ```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started
-
-Install the dependencies...
-
-```bash
-cd svelte-app
 npm install
 ```
 
-...then start [Rollup](https://rollupjs.org):
-
+Run the app using:
 ```bash
 npm run dev
 ```
@@ -35,6 +17,9 @@ Navigate to [localhost:8000](http://localhost:8000). You should see your app run
 
 By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
 
+This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+
+---
 
 ## Building and running in production mode
 
